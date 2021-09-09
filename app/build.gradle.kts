@@ -42,7 +42,7 @@ dependencies {
     implementation(AndroidX.constraintLayout)
 
     // Local Testing
-    testImplementation("junit:junit:_")
+    testImplementation(Testing.junit4)
 
     // Instrumented Testing
     androidTestImplementation(AndroidX.test.ext.junit)
