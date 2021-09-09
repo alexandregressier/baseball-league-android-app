@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android Baseball League</string>
+    <string name="app_short_name">ABL</string>
 </resources>
