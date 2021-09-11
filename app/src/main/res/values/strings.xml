@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Android Baseball League</string>
     <string name="app_short_name">ABL</string>
+
+    <!-- Navigation -->
+    <string name="teams">Teams</string>
+
+    <!-- Layouts -->
+    <string name="team_logo">Team Logo</string>
 </resources>
