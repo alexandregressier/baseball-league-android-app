@@ -13,10 +13,7 @@ class StandingsFragment : Fragment() {
 
     private val standingsViewModel by activityViewModels<StandingsViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_standings, container, false).apply {
             val standingsAdapter = StandingsAdapter()
             if (this is RecyclerView)
