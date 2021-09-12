@@ -3,7 +3,9 @@ package dev.gressier.abl.teams
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import dev.gressier.abl.NavGraphDirections
 import dev.gressier.abl.R
 import dev.gressier.abl.databinding.TeamsGridItemBinding
 
@@ -26,7 +28,9 @@ class TeamsGridAdapter(private val teams: List<UITeam>) : RecyclerView.Adapter<T
         fun bind(item: UITeam) {
             binding.apply {
                 team = item
-                executePendingBindings()
+                setClickListener {
+                    it.findNavController().navigate(NavGraphDirections.actionGoToTeam(item.teamId, item.teamName))
+                }
             }
         }
     }

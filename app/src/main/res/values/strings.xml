@@ -23,4 +23,8 @@
     <string name="last_ten_abbr">L10</string>
     <string name="streak_abbr">STRK</string>
 
+    <!-- Single Team Fragment -->
+    <string name="view_roster">View Roster</string>
+    <string name="in_abl">in ABL</string>
+
 </resources>

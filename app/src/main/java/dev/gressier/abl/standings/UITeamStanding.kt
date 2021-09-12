@@ -20,6 +20,7 @@ data class UITeamStanding(
     val gamesBackText = if (gamesBack <= 0) "-" else "$gamesBack"
     val lastTenText = "${teamStanding.winsLastTen}-${lastTenNumber}"
     val streakText = "${teamStanding.streakType.shortName}${teamStanding.streakCount}"
+    val winLossText = "${teamStanding.wins} - ${teamStanding.losses}"
 
     companion object {
 

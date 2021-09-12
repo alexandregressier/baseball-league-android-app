@@ -2,9 +2,11 @@ package dev.gressier.abl.standings
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import dev.gressier.abl.NavGraphDirections
 import dev.gressier.abl.databinding.StandingsHeaderBinding
 import dev.gressier.abl.databinding.StandingsTeamItemBinding
 import kotlinx.coroutines.*
@@ -68,7 +70,16 @@ class StandingsAdapter : ListAdapter<StandingsListItem, RecyclerView.ViewHolder>
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(standingsTeamItem: StandingsListItem.TeamItem) {
-            binding.uiTeamStanding = standingsTeamItem.uiTeamStanding
+            binding.apply {
+                uiTeamStanding = standingsTeamItem.uiTeamStanding
+                setClickListener {
+                    it.findNavController().navigate(
+                        standingsTeamItem.uiTeamStanding.run {
+                            NavGraphDirections.actionGoToTeam(teamId, teamName)
+                        }
+                    )
+                }
+            }
         }
 
         companion object {

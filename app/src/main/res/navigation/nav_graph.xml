@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/teamsFragment">
+
+    <action
+        android:id="@+id/actionGoToTeam"
+        app:destination="@id/singleTeamFragment">
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+        <argument
+            android:name="teamName"
+            app:argType="string" />
+    </action>
 
     <fragment
         android:id="@+id/teamsFragment"
         android:name="dev.gressier.abl.teams.TeamsFragment"
-        android:label="@string/teams"/>
+        android:label="@string/teams" />
     <fragment
         android:id="@+id/standingsFragment"
         android:name="dev.gressier.abl.standings.StandingsFragment"
-        android:label="@string/standings"/>
-
+        android:label="@string/standings" />
+    <fragment
+        android:id="@+id/singleTeamFragment"
+        android:name="dev.gressier.abl.teams.SingleTeamFragment"
+        android:label="{teamName}"
+        tools:layout="@layout/fragment_single_team">
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+        <argument
+            android:name="teamName"
+            app:argType="string" />
+    </fragment>
 </navigation>
