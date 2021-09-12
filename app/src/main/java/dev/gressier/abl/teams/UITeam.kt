@@ -35,5 +35,8 @@ data class UITeam(
             UITeam(Team.Waukesha, R.drawable.fi_ic_electric_guitar, R.color.waukeshaPrimary, R.color.waukeshaSecondary, R.color.waukeshaTertiary),
             UITeam(Team.WisconsinRapids, R.drawable.fi_ic_cranberry, R.color.wiRapidsPrimary, R.color.wiRapidsSecondary, R.color.wiRapidsTertiary),
         )
+
+        @JvmStatic fun fromTeamId(teamId: TeamId?): UITeam? =
+            allTeams.firstOrNull { it.teamId == teamId }
     }
 }
