@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin") version "2.3.5"
+    id("androidx.navigation.safeargs.kotlin") version "2.3.5" // TODO: remove the hard coded version for Safe Args
 }
 
 android {
