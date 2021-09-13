@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application") version "4.2.2"
     kotlin("android")
     kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin")
+    id("androidx.navigation.safeargs.kotlin") version "2.3.5"
 }
 
 android {
