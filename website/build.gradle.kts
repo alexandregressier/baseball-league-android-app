@@ -17,8 +17,9 @@ dependencies {
 
     implementation(kotlinw("react"))
     implementation(kotlinw("react-dom"))
+    implementation(kotlinw("react-router-dom"))
 
-    implementation(kotlinw("styled"))
+    implementation(kotlinw("styled-next"))
 }
 
 kotlin {
