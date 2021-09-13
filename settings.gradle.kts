@@ -25,7 +25,7 @@ refreshVersions {
     }
 }
 
-rootProject.name = "Android Baseball League"
+rootProject.name = "android-baseball-league"
 include(
     ":app",
 )
