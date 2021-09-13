@@ -1,11 +1,8 @@
 import kotlinx.browser.document
 import kotlinx.css.*
-import kotlinx.css.BackgroundRepeat.repeat
-import kotlinx.css.Color.Companion.black
 import kotlinx.css.Color.Companion.white
 import kotlinx.css.Display.grid
 import kotlinx.css.properties.BoxShadow
-import kotlinx.css.properties.TextDecoration
 import react.dom.h1
 import react.dom.p
 import react.dom.render
@@ -29,22 +26,8 @@ val teamList = listOf(
     Team("WR", "Wisconsin Rapids", "Cranberries", Team.Division.WEST),
 )
 
-val styles = CssBuilder(allowClasses = false).apply {
-    body {
-        margin(0.px)
-        padding(0.px)
-        backgroundImage = Image("url(/img/background.svg)")
-        backgroundRepeat = repeat
-        fontFamily = "Roboto, sans-serif"
-    }
-    a {
-        color = black
-        textDecoration = TextDecoration.none
-    }
-}
-
 fun main() {
-    injectGlobal(styles)
+    injectGlobal(globalStyles)
     render(document.getElementById("root")) {
         h1 { +"Android Baseball League Teams" }
         styledDiv {
