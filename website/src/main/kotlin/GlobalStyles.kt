@@ -3,11 +3,9 @@ import kotlinx.css.properties.TextDecoration
 
 val globalStyles = CssBuilder(allowClasses = false).apply {
     body {
-        margin(0.px)
-        padding(0.px)
+        fontFamily = "IBM Plex Sans, sans-serif"
         backgroundImage = Image("url(/img/background.svg)")
         backgroundRepeat = BackgroundRepeat.repeat
-        fontFamily = "Roboto, sans-serif"
     }
 
     a {
