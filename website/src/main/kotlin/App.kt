@@ -27,7 +27,7 @@ fun RBuilder.appWithRouter() {
         }
         styledFooter {
             css { +Styles.footer }
-            +"Copyright &copy; 2021"
+            +"Copyright \u00A9 2021"
         }
     }
 }
