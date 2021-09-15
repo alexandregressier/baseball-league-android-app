@@ -8,6 +8,7 @@ import teams.TeamCards
 import teams.TeamDetails
 import teams.TeamRepository
 import teams.TeamRepositoryStatic
+import kotlin.js.Date
 
 val teamRepository: TeamRepository = TeamRepositoryStatic()
 
@@ -27,7 +28,7 @@ fun RBuilder.appWithRouter() {
         }
         styledFooter {
             css { +Styles.footer }
-            +"Copyright \u00A9 2021"
+            +"Copyright \u00A9 ${Date().getFullYear()}"
         }
     }
 }
