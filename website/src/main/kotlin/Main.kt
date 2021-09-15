@@ -34,7 +34,7 @@ val TeamDetails = fc<Props> {
                     margin = "auto"
                     textAlign = TextAlign.center
                 }
-                styledImg(src = "/img/team-logos/${id.lowercase()}.svg", alt = "$city $name Logo") {
+                styledImg(src = "/images/team-logos/${id.lowercase()}.svg", alt = "$city $name Logo") {
                     css {
                         display = Display.inlineBlock
                         width = 14.rem
@@ -89,7 +89,7 @@ val TeamCard = fc<TeamCardProps> { props ->
                 margin = "0.8rem"
                 textAlign = TextAlign.center
             }
-            styledImg(src = "/img/team-logos/${id.lowercase()}.svg", alt = "$city $name Logo") {
+            styledImg(src = "/images/team-logos/${id.lowercase()}.svg", alt = "$city $name Logo") {
                 css {
                     display = Display.inlineBlock
                     width = 4.rem
