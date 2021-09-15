@@ -1,3 +1,4 @@
+
 import kotlinx.css.*
 import kotlinx.css.BackgroundRepeat.repeat
 import kotlinx.css.Color.Companion.black
@@ -10,6 +11,7 @@ import kotlinx.css.FontWeight.Companion.bold
 import kotlinx.css.Position.sticky
 import kotlinx.css.TextAlign.center
 import kotlinx.css.properties.TextDecoration
+import kotlinx.css.properties.boxShadow
 import styled.StyleSheet
 
 val globalStyles = CssBuilder(allowClasses = false).apply {
@@ -31,6 +33,7 @@ object Styles : StyleSheet("ComponentStyles", isStatic = true) {
         textAlign = center
         padding = "1rem"
         backgroundColor = white
+        boxShadow(blackAlpha(0.1), offsetY = 4.px, blurRadius = 8.px)
     }
     val title by css {
         margin = "0"
@@ -50,6 +53,7 @@ object Styles : StyleSheet("ComponentStyles", isStatic = true) {
         margin = "auto"
         backgroundColor = white
         borderRadius = 1.rem
+        boxShadow(blackAlpha(0.2), offsetY = 4.px, blurRadius = 8.px)
     }
     val cardLabel by css {
         fontSize = 0.7.rem
@@ -77,6 +81,7 @@ object Styles : StyleSheet("ComponentStyles", isStatic = true) {
         margin = "auto"
         backgroundColor = white
         borderRadius = 3.rem
+        boxShadow(blackAlpha(0.2), offsetY = 4.px, blurRadius = 8.px)
     }
     val bigCardContainer by css {
         marginTop = 7.vh
@@ -92,6 +97,7 @@ object Styles : StyleSheet("ComponentStyles", isStatic = true) {
         fontWeight = bold
         backgroundColor = white
         borderRadius = 1.rem
+        boxShadow(blackAlpha(0.2), offsetY = 4.px, blurRadius = 8.px)
     }
     val actionButtonsContainer by css {
         margin = "6vh 0"
