@@ -1,6 +1,4 @@
 import kotlinx.browser.document
-import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
 import react.Props
 import react.RBuilder
 import react.dom.p
@@ -25,47 +23,21 @@ val TeamDetails = fc<Props> {
 
     team?.apply {
         styledDiv {
-            css {
-                marginTop = 7.vh
-            }
+            css { +Styles.bigCardContainer }
             styledDiv {
-                css {
-                    width = 17.rem
-                    margin = "auto"
-                    textAlign = TextAlign.center
-                }
+                css { +Styles.bigCard }
                 styledImg(src = "/images/team-logos/${id.lowercase()}.svg", alt = "$city $name Logo") {
-                    css {
-                        display = Display.inlineBlock
-                        width = 14.rem
-                        height = 14.rem
-                        padding = "1.2rem"
-                        margin = "auto"
-                        backgroundColor = Color.white
-                        borderRadius = 3.rem
-                    }
+                    css { +Styles.bigCardImage }
                 }
                 p { +"$city $name" }
             }
         }
         styledDiv {
-            css {
-                margin = "10vw 0"
-                textAlign = TextAlign.center
-            }
-            Link { attrs.to = Path.root
+            css { +Styles.actionButtonsContainer }
+            Link {
+                attrs.to = Path.root
                 styledSpan {
-                    css {
-                        display = Display.inlineBlock
-                        width = 8.rem
-                        padding = "1rem"
-                        color = Color.black
-                        textDecoration = TextDecoration.none
-                        textAlign = TextAlign.center
-                        fontWeight = FontWeight.bold
-                        backgroundColor = Color.white
-                        borderRadius = 1.rem
-                    }
+                    css { +Styles.backButton }
                     +"< Back"
                 }
             }
@@ -84,27 +56,12 @@ external interface TeamCardProps : Props {
 val TeamCard = fc<TeamCardProps> { props ->
     props.team.apply {
         styledDiv {
-            css {
-                width = 5.rem
-                margin = "0.8rem"
-                textAlign = TextAlign.center
-            }
+            css { +Styles.card }
             styledImg(src = "/images/team-logos/${id.lowercase()}.svg", alt = "$city $name Logo") {
-                css {
-                    display = Display.inlineBlock
-                    width = 4.rem
-                    height = 4.rem
-                    padding = "0.4rem"
-                    margin = "auto"
-                    backgroundColor = Color.white
-                    borderRadius = 1.rem
-                }
+                css { +Styles.cardImage }
             }
             styledP {
-                css {
-                    fontSize = 0.7.rem
-                    margin = "0 10px"
-                }
+                css { +Styles.cardLabel };
                 +"$city $name"
             }
         }
@@ -121,16 +78,10 @@ external interface TeamCardsProps : Props {
 
 val TeamCards = fc<TeamCardsProps> { props ->
     styledDiv {
-        css {
-            display = Display.flex
-            justifyContent = JustifyContent.center
-            flexWrap = FlexWrap.wrap
-            maxWidth = 1000.px
-            margin = "auto"
-            paddingTop = 3.vh
-        }
+        css { +Styles.cardsContainer }
         teamRepository.getTeams().forEach { t ->
-            Link { attrs.to = t.run { "${Path.teams}/$id?teamName=$city $name" }
+            Link {
+                attrs.to = t.run { "${Path.teams}/$id?teamName=$city $name" }
                 TeamCard { team = t }
             }
         }
@@ -144,18 +95,9 @@ fun RBuilder.TeamCards(handler: TeamCardsProps.() -> Unit) =
 fun RBuilder.appWithRouter() {
     BrowserRouter {
         styledHeader {
-            css {
-                position = Position.sticky
-                top = 0.px
-                textAlign = TextAlign.center
-                padding = "1rem"
-                backgroundColor = Color.white
-            }
+            css { +Styles.header }
             styledH1 {
-                css {
-                    margin = "0"
-                    fontSize = 1.8.rem
-                }
+                css { +Styles.title }
                 Link { attrs.to = Path.root; +"Android Baseball League Teams" }
             }
         }
@@ -165,12 +107,7 @@ fun RBuilder.appWithRouter() {
             Route { attrs { path = arrayOf(Path.root); component = TeamCards } }
         }
         styledFooter {
-            css {
-                padding = "1rem 0"
-                color = Color.grey
-                fontSize = 0.7.rem
-                textAlign = TextAlign.center
-            }
+            css { +Styles.footer }
             +"Copyright &copy; 2021"
         }
     }
