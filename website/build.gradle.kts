@@ -32,3 +32,7 @@ kotlin {
         binaries.executable()
     }
 }
+
+tasks.register("stage") {
+    dependsOn("build")
+}
