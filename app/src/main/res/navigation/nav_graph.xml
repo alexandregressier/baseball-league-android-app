@@ -35,5 +35,7 @@
         <argument
             android:name="teamName"
             app:argType="string" />
+        <deepLink
+            app:uri="https://abl-teams.herokuapp.com/teams/{teamId}?teamName={teamName}" />
     </fragment>
 </navigation>
