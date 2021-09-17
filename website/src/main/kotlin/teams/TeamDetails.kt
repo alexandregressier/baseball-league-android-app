@@ -11,7 +11,6 @@ import react.router.dom.useParams
 import styled.css
 import styled.styledDiv
 import styled.styledImg
-import styled.styledSpan
 import teamRepository
 
 val TeamDetails = fc<Props> {
@@ -33,7 +32,7 @@ val TeamDetails = fc<Props> {
             css { +Styles.actionButtonsContainer }
             Link {
                 attrs.to = Path.root
-                styledSpan {
+                styledDiv {
                     css { +Styles.backButton }
                     +"< Back"
                 }
