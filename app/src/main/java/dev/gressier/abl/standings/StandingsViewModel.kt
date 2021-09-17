@@ -1,14 +1,24 @@
 package dev.gressier.abl.standings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import dev.gressier.abl.data.BaseballDatabase
+import dev.gressier.abl.data.BaseballRepository
 
-class StandingsViewModel : ViewModel() {
+class StandingsViewModel(application: Application): AndroidViewModel(application) {
 
-    val standings: LiveData<List<UITeamStanding>> = MutableLiveData(
-        TeamStanding.mockTeamStandings.mapNotNull { teamStanding ->
-            UITeamStanding.fromTeamIdAndStandings(teamStanding.teamId, TeamStanding.mockTeamStandings)
+    private val repository: BaseballRepository
+
+    val standings: LiveData<List<UITeamStanding>>
+
+    init {
+        repository = BaseballDatabase
+            .getDatabase(application, viewModelScope)
+            .baseballDao()
+            .let(BaseballRepository.Companion::getInstance)
+
+        standings = Transformations.map(repository.getStandings()) { teamStandings ->
+            teamStandings.mapNotNull { UITeamStanding.fromTeamIdAndStandings(it.teamId, teamStandings) }
         }
-    )
+    }
 }

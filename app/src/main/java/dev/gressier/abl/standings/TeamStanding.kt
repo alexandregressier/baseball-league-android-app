@@ -1,10 +1,13 @@
 package dev.gressier.abl.standings
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import dev.gressier.abl.standings.TeamStanding.WinLoss.LOSS
 import dev.gressier.abl.standings.TeamStanding.WinLoss.WIN
 import dev.gressier.abl.teams.Team
 import dev.gressier.abl.teams.TeamId
 
+@Entity(tableName = "standings")
 data class TeamStanding(
     val teamId: TeamId,
     val division: Team.Division,
@@ -16,6 +19,8 @@ data class TeamStanding(
     val divisionGamesBack: Double,
     val leagueGamesBack: Double,
 ) {
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
+
     enum class WinLoss {
         WIN, LOSS, UNKNOWN;
         val shortName = name.first()
