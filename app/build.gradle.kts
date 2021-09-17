@@ -54,6 +54,12 @@ dependencies {
     // RecyclerView
     implementation(AndroidX.recyclerView)
 
+    // Room
+    implementation(AndroidX.room.runtime)
+    implementation(AndroidX.room.ktx)
+    kapt(AndroidX.room.compiler)
+
+
     // Local Testing
     testImplementation(Testing.junit4)
 
