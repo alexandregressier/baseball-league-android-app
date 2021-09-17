@@ -17,7 +17,7 @@ external interface TeamCardsProps : Props {
 val TeamCards = fc<TeamCardsProps> { props ->
     styledDiv {
         css { +Styles.cardsContainer }
-        teamRepository.getTeams().forEach { t ->
+        teamRepository.getTeams().forEach { t -> // TODO: find a way to pass props to components displayed via routing
             Link {
                 attrs.to = t.run { "${Path.teams}/$id?teamName=$city $name" }
                 TeamCard { team = t }
