@@ -30,5 +30,6 @@ refreshVersions {
 rootProject.name = "android-baseball-league"
 include(
     "app",
+    "api-client",
     "website",
 )
