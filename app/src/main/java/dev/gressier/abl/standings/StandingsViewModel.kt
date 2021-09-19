@@ -1,12 +1,10 @@
 package dev.gressier.abl.standings
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dev.gressier.abl.data.BaseballDatabase
 import dev.gressier.abl.data.BaseballRepository
+import dev.gressier.abl.utils.orGetErrorMessage
 import kotlinx.coroutines.launch
 
 class StandingsViewModel(application: Application): AndroidViewModel(application) {
@@ -14,6 +12,7 @@ class StandingsViewModel(application: Application): AndroidViewModel(application
     private val repository: BaseballRepository
 
     val standings: LiveData<List<UITeamStanding>>
+    val errorMessage = MutableLiveData("")
 
     init {
         repository = BaseballDatabase
@@ -29,6 +28,8 @@ class StandingsViewModel(application: Application): AndroidViewModel(application
     fun refreshStandings() {
         viewModelScope.launch {
             repository.updateStandings()
+                .orGetErrorMessage(getApplication())
+                ?.let { errorMessage.value = it }
         }
     }
 }

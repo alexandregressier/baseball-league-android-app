@@ -2,20 +2,51 @@ package dev.gressier.abl.data
 
 import androidx.lifecycle.LiveData
 import dev.gressier.abl.api.services.getDefaultAblService
+import dev.gressier.abl.data.BaseballRepository.ResultStatus.*
 import dev.gressier.abl.standings.TeamStanding
 import dev.gressier.abl.utils.convertToTeamStandings
+import retrofit2.HttpException
+import java.io.IOException
 
 class BaseballRepository(private val baseballDao: BaseballDao) {
 
     fun getStandings(): LiveData<List<TeamStanding>> =
         baseballDao.getLiveStandings()
 
-    suspend fun updateStandings() {
-        val standings = apiService.getStandings()
-        if (standings.any()) {
-            baseballDao.updateStandings(standings.convertToTeamStandings(baseballDao.getStandings()))
+    suspend fun updateStandings(): ResultStatus =
+        safeApiRequest { apiService.getStandings() }.run {
+            if (successful && result?.any() == true) {
+                baseballDao.updateStandings(result.convertToTeamStandings(baseballDao.getStandings()))
+                SUCCESS
+            } else
+                status
         }
+
+    enum class ResultStatus {
+        SUCCESS,
+        NETWORK_EXCEPTION,
+        REQUEST_EXCEPTION,
+        GENERAL_EXCEPTION,
+        UNKNOWN,
     }
+
+    inner class ApiResult<T>(
+        val result: T? = null,
+        val status: ResultStatus = UNKNOWN,
+    ) {
+        val successful = status == SUCCESS
+    }
+
+    private suspend fun <T> safeApiRequest(apiFunction: suspend () -> T): ApiResult<T> =
+        try {
+            ApiResult(apiFunction(), SUCCESS)
+        } catch (e: HttpException) {
+            ApiResult(status = REQUEST_EXCEPTION)
+        } catch (e: IOException) {
+            ApiResult(status = NETWORK_EXCEPTION)
+        } catch (e: Exception) {
+            ApiResult(status = GENERAL_EXCEPTION)
+        }
 
     companion object {
         private val apiService = getDefaultAblService()
