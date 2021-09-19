@@ -1,9 +1,9 @@
 package dev.gressier.abl.api.models
 
 import dev.gressier.abl.api.models.enums.HandApiModel
-import dev.gressier.abl.api.models.enums.HandApiModel.RIGHT
+import dev.gressier.abl.api.models.enums.HandApiModel.Right
 import dev.gressier.abl.api.models.enums.PositionApiModel
-import dev.gressier.abl.api.models.enums.PositionApiModel.UNKNOWN
+import dev.gressier.abl.api.models.enums.PositionApiModel.Unknown
 import dev.gressier.abl.api.typealiases.PlayerId
 import dev.gressier.abl.api.typealiases.TeamId
 
@@ -13,9 +13,9 @@ data class BatterBoxScoreItemApiModel(
     val firstName: String,
     val lastName: String,
     val number: Int = 0,
-    val bats: HandApiModel = RIGHT,
-    val throws: HandApiModel = RIGHT,
-    val position: PositionApiModel = UNKNOWN,
+    val bats: HandApiModel = Right,
+    val throws: HandApiModel = Right,
+    val position: PositionApiModel = Unknown,
     val boxScoreLastName: String?,
     val games: Int,
     val plateAppearances: Int,

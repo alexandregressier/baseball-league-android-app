@@ -1,9 +1,9 @@
 package dev.gressier.abl.api.models
 
 import dev.gressier.abl.api.models.enums.HandApiModel
-import dev.gressier.abl.api.models.enums.HandApiModel.RIGHT
+import dev.gressier.abl.api.models.enums.HandApiModel.Right
 import dev.gressier.abl.api.models.enums.PositionApiModel
-import dev.gressier.abl.api.models.enums.PositionApiModel.UNKNOWN
+import dev.gressier.abl.api.models.enums.PositionApiModel.Unknown
 
 data class PlayerApiModel(
     val playerId: String,
@@ -11,8 +11,8 @@ data class PlayerApiModel(
     val firstName: String,
     val lastName: String,
     val number: Int = 0,
-    val bats: HandApiModel = RIGHT,
-    val throws: HandApiModel = RIGHT,
-    val position: PositionApiModel = UNKNOWN,
+    val bats: HandApiModel = Right,
+    val throws: HandApiModel = Right,
+    val position: PositionApiModel = Unknown,
     val boxScoreLastName: String?,
 )
