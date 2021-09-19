@@ -59,6 +59,10 @@ dependencies {
     implementation(AndroidX.room.ktx)
     kapt(AndroidX.room.compiler)
 
+    // Retrofit
+    implementation(Square.retrofit2)
+    implementation(project(":api-client"))
+
 
     // Local Testing
     testImplementation(Testing.junit4)

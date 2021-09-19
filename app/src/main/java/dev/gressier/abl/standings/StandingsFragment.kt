@@ -22,5 +22,6 @@ class StandingsFragment : Fragment() {
             standingsViewModel.standings.observe(viewLifecycleOwner) { standings ->
                 standingsAdapter.addHeadersAndBuildStandings(standings)
             }
+            standingsViewModel.refreshStandings()
         }
 }
