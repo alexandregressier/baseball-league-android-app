@@ -1,6 +1,7 @@
 package dev.gressier.abl.teams
 
-import dev.gressier.abl.teams.Team.Division.*
+import dev.gressier.abl.teams.Team.Division.EAST
+import dev.gressier.abl.teams.Team.Division.WEST
 
 typealias TeamId = String
 
@@ -14,7 +15,7 @@ data class Team(
     val leagueRank: Int = -1,
     val divisionRank: Int = -1,
 ) {
-    enum class Division { EAST, WEST, UNKNOWN }
+    enum class Division { WEST, EAST, UNKNOWN }
 
     companion object {
         val Appleton = Team("APL", "Appleton", "Foxes", EAST)
