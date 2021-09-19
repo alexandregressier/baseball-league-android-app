@@ -63,6 +63,8 @@ dependencies {
     implementation(Square.retrofit2)
     implementation(project(":api-client"))
 
+    // Swipe-to-Refresh
+    implementation(AndroidX.swipeRefreshLayout)
 
     // Local Testing
     testImplementation(Testing.junit4)

@@ -6,22 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.RecyclerView
-import dev.gressier.abl.R
+import dev.gressier.abl.databinding.FragmentStandingsBinding
 
 class StandingsFragment : Fragment() {
 
     private val standingsViewModel by activityViewModels<StandingsViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_standings, container, false).apply {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
+        FragmentStandingsBinding.inflate(inflater).apply {
             val standingsAdapter = StandingsAdapter()
-            if (this is RecyclerView)
-                adapter = standingsAdapter
+            standingsList.adapter = standingsAdapter
 
+            standingsSwipeRefreshLayout.setOnRefreshListener {
+                standingsViewModel.refreshStandings()
+            }
             standingsViewModel.standings.observe(viewLifecycleOwner) { standings ->
                 standingsAdapter.addHeadersAndBuildStandings(standings)
+                standingsSwipeRefreshLayout.isRefreshing = false
             }
             standingsViewModel.refreshStandings()
-        }
+        }.root
 }
