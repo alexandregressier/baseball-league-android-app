@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="java.util.List" />
+        <import type="dev.gressier.abl.teams.UITeam" />
+        <variable
+            name="game"
+            type="dev.gressier.abl.scoreboard.ScheduledGame" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <include
+            android:id="@+id/awayTeam"
+            layout="@layout/scoreboard_team"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:score="@{game.awayScore}"
+            app:winLoss="@{game.awayWinLoss}"
+            app:uiTeam="@{UITeam.fromTeamId(game.awayTeamId)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/scoreboardStatusSeparator"
+            app:layout_constraintBottom_toTopOf="@id/homeTeam" />
+
+        <include
+            android:id="@+id/homeTeam"
+            layout="@layout/scoreboard_team"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            app:score="@{game.homeScore}"
+            app:winLoss="@{game.homeWinLoss}"
+            app:uiTeam="@{UITeam.fromTeamId(game.homeTeamId)}"
+            app:layout_constraintTop_toBottomOf="@id/awayTeam"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/awayTeam" />
+
+        <View
+            android:id="@+id/scoreboardStatusSeparator"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/lightGray"
+            app:layout_constraintTop_toTopOf="@id/awayTeam"
+            app:layout_constraintStart_toEndOf="@id/awayTeam"
+            app:layout_constraintEnd_toStartOf="@id/scoreboardStatus"
+            app:layout_constraintBottom_toBottomOf="@id/homeTeam" />
+
+        <include
+            android:id="@id/scoreboardStatus"
+            layout="@layout/scoreboard_game_status"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:game="@{game}"
+            app:layout_constraintTop_toTopOf="@id/awayTeam"
+            app:layout_constraintStart_toEndOf="@id/scoreboardStatusSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/homeTeam" />
+
+        <include
+            android:id="@+id/scoreboardPlayers"
+            layout="@layout/scoreboard_players"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:game="@{game}"
+            app:layout_constraintTop_toBottomOf="@id/scoreboardStatusSeparator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

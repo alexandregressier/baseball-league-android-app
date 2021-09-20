@@ -3,10 +3,14 @@ package dev.gressier.abl.data
 import androidx.lifecycle.LiveData
 import dev.gressier.abl.api.services.getDefaultAblService
 import dev.gressier.abl.data.BaseballRepository.ResultStatus.*
+import dev.gressier.abl.scoreboard.ScheduledGame
 import dev.gressier.abl.standings.TeamStanding
+import dev.gressier.abl.utils.convertToScheduledGames
 import dev.gressier.abl.utils.convertToTeamStandings
+import dev.gressier.abl.utils.toGameDateString
 import retrofit2.HttpException
 import java.io.IOException
+import java.time.LocalDate
 
 class BaseballRepository(private val baseballDao: BaseballDao) {
 
@@ -21,6 +25,20 @@ class BaseballRepository(private val baseballDao: BaseballDao) {
             } else
                 status
         }
+
+    fun getGamesForDate(date: LocalDate): LiveData<List<ScheduledGame>> =
+        baseballDao.getGamesForDate("${date.toGameDateString()}%")
+
+    suspend fun updateGamesForDate(date: LocalDate): ResultStatus {
+        val safeApiRequest = safeApiRequest { apiService.getGames(requestedDate = date) }
+        return safeApiRequest.run {
+            if (successful && result?.any() == true) {
+                baseballDao.insertOrUpdateGames(result.convertToScheduledGames())
+                SUCCESS
+            } else
+                status
+        }
+    }
 
     enum class ResultStatus {
         SUCCESS,

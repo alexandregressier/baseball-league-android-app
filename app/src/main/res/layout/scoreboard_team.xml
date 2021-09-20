@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="score"
+            type="Integer" />
+        <variable
+            name="winLoss"
+            type="String" />
+        <variable
+            name="uiTeam"
+            type="dev.gressier.abl.teams.UITeam" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_width="300dp">
+
+        <ImageView
+            android:id="@+id/scoreboardTeamLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/team_logo"
+            android:src="@{uiTeam.logoId}"
+            app:layout_constraintTop_toTopOf="@id/scoreboardTeamName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/scoreboardTeamRecord"
+            tools:src="@drawable/fi_ic_electric_guitar" />
+
+        <TextView
+            android:id="@+id/scoreboardTeamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="@{uiTeam.nickname}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/scoreboardTeamLogo"
+            tools:text="Riffs" />
+
+        <TextView
+            android:id="@+id/scoreboardTeamRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/scoreboardTeamName"
+            app:layout_constraintStart_toStartOf="@id/scoreboardTeamName"
+            android:text='@{winLoss}'
+            tools:text="101-53" />
+
+        <TextView
+            android:id="@+id/scoreboardTeamScore"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="36sp"
+            android:text='@{score.toString()}'
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="8" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -17,13 +17,20 @@
     </action>
 
     <fragment
+        android:id="@+id/scoreboardFragment"
+        android:name="dev.gressier.abl.scoreboard.ScoreboardFragment"
+        android:label="@string/scoreboard" />
+
+    <fragment
         android:id="@+id/teamsFragment"
         android:name="dev.gressier.abl.teams.TeamsFragment"
         android:label="@string/teams" />
+
     <fragment
         android:id="@+id/standingsFragment"
         android:name="dev.gressier.abl.standings.StandingsFragment"
         android:label="@string/standings" />
+
     <fragment
         android:id="@+id/singleTeamFragment"
         android:name="dev.gressier.abl.teams.SingleTeamFragment"
@@ -38,4 +45,5 @@
         <deepLink
             app:uri="https://abl-teams.herokuapp.com/teams/{teamId}?teamName={teamName}" />
     </fragment>
+
 </navigation>

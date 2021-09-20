@@ -6,12 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import dev.gressier.abl.scoreboard.ScheduledGame
 import dev.gressier.abl.standings.TeamStanding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(
-    entities = [TeamStanding::class],
+    entities = [TeamStanding::class, ScheduledGame::class],
     exportSchema = false,
     version = 1,
 )
