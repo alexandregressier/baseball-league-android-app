@@ -1,7 +1,7 @@
 package dev.gressier.abl.api.typealiases
 
-typealias TeamId = String
-typealias PlayerId = String
-typealias GameId = String
-typealias ItemId = String
-typealias UserId = String
+internal typealias TeamId = String
+internal typealias PlayerId = String
+internal typealias GameId = String
+internal typealias ItemId = String
+internal typealias UserId = String
